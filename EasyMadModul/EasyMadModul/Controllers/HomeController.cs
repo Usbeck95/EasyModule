@@ -13,7 +13,7 @@ namespace EasyMadModul.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Afventer()
         {
             var model = new List<FoodCardModel>();
 
@@ -28,7 +28,7 @@ namespace EasyMadModul.Controllers
             return View(model);
         }
 
-        public ActionResult Contact()
+        public ActionResult Udleveret()
         {
             
 
