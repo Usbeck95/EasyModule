@@ -22,4 +22,5 @@ namespace EasyMadModul.Models
 
 
     }
+
 }
