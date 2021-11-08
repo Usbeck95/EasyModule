@@ -7,29 +7,43 @@
         <h1>Mad modul</h1>
         <p>Bestil den ønskede mad</p>
     </div>
+    <form class="row g-3 needs-validation" novalidate>
+        <div class="mb-3">
+            <label class="fs-4">Vælg hvilken klub du hører til</label>
+            <select class="form-select" aria-label="Default select example" required>
+                <option selected>Vælg klub</option>
 
-    <div class="mb-3">
-        <label class="fs-4">Vælg hvilken klub du hører til</label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Vælg klub</option>
-            
-            <option value="1">One</option>
-        </select>
-    </div>
+                <option value="1">One</option>
+            </select>
+        </div>
 
-    <div class="mb-3">
-        <label class="fs-4">Vælg dit medlemsnummer</label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Vælg medlemsnummer</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-    </div>
 
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+        <div class="mb-3">
+            <label class="fs-4">Vælg dit medlemsnummer</label>
+            <select class="form-select" aria-label="Default select example" required>
+                <option selected>Vælg medlemsnummer</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
 
+        <div class="mb-3">
+            <label class="fs-4">Vælg hvad du godt kunne tænke dig at bestille</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Vælg bestilling</option>
+
+                <option value="1">One</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="fs-4 form-label">Kommentar til bestilling</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary fs-4" type="submit">Bestil</button>
+        </div>
+    </form>
 </div>

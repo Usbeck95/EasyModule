@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 
 
+
 namespace EasyMadModul.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
-            
-            return View();
+            var model = new List<UserModel>();
+
+            model.Add(new UserModel(0, "Maple", "Kittyclub", 24601));
+            model.Add(new UserModel(1, "Emily", "Kittyclub", 24602));
+            model.Add(new UserModel(2, "Tequila", "Horsieclub", 24603));
+            model.Add(new UserModel(3, "Nube", "Horsieclub", 24604));
+            model.Add(new UserModel(4, "Möble", "Kittyclub", 24605));
+            model.Add(new UserModel(5, "Emmerloo", "Kittyclub", 24606));
+            model.Add(new UserModel(6, "Pöbli", "Kittyclub", 24607));
+
+            return View(model);
         }
 
         public ActionResult Afventer()
@@ -30,17 +41,9 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Udleveret()
         {
-            var model = new List<UserModel>();
+           
 
-            model.Add(new UserModel(0, "Maple", "Kittyclub", 24601));
-            model.Add(new UserModel(1, "Emily", "Kittyclub", 24602));
-            model.Add(new UserModel(2, "Tequila", "Horsieclub", 24603));
-            model.Add(new UserModel(3, "Nube", "Horsieclub", 24604));
-            model.Add(new UserModel(4, "Möble", "Kittyclub", 24605));
-            model.Add(new UserModel(5, "Emmerloo", "Kittyclub", 24606));
-            model.Add(new UserModel(6, "Pöbli", "Kittyclub", 24607));
-
-            return View(model);
+            return View();
         }
     }
 }
