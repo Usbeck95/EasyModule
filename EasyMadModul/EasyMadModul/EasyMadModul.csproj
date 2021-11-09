@@ -121,7 +121,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\UserHandler.cs" />
     <Compile Include="Models\FoodCardModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -177,6 +177,7 @@
     <Content Include="Views\Home\Afventer.cshtml" />
     <Content Include="Views\Home\Udleveret.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

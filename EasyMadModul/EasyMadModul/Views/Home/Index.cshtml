@@ -7,17 +7,21 @@
         <h1>Mad modul</h1>
         <p>Bestil den ønskede mad</p>
     </div>
+
+    
     <form class="row g-3 needs-validation" novalidate>
         <div class="mb-3">
             <label class="fs-4">Vælg hvilken klub du hører til</label>
             <select class="form-select" aria-label="Default select example" required>
                 <option selected>Vælg klub</option>
 
-                <option value="1">One</option>
+
+                <option value=""> @Html.DisplayFor(model => model.Department) </option>
+
             </select>
         </div>
 
-
+     
         <div class="mb-3">
             <label class="fs-4">Vælg dit medlemsnummer</label>
             <select class="form-select" aria-label="Default select example" required>

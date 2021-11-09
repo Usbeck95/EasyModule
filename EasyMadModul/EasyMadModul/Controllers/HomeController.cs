@@ -1,28 +1,37 @@
 ﻿using EasyMadModul.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
-
+using EasyMadModul.Handlers;
 
 
 namespace EasyMadModul.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
-            var model = new List<UserModel>();
+            // GET: Users
+            List<UserModel> users = new List<UserModel>();
 
-            model.Add(new UserModel(0, "Maple", "Kittyclub", 24601));
-            model.Add(new UserModel(1, "Emily", "Kittyclub", 24602));
-            model.Add(new UserModel(2, "Tequila", "Horsieclub", 24603));
-            model.Add(new UserModel(3, "Nube", "Horsieclub", 24604));
-            model.Add(new UserModel(4, "Möble", "Kittyclub", 24605));
-            model.Add(new UserModel(5, "Emmerloo", "Kittyclub", 24606));
-            model.Add(new UserModel(6, "Pöbli", "Kittyclub", 24607));
+            UserHandler userList = new UserHandler();
 
-            return View(model);
+            users = userList.FetchAll();
+
+            return View("Index", users);
         }
+
+        public ActionResult Index1()
+        {
+            // GET: Users
+            List<UserModel> users = new List<UserModel>();
+
+            UserHandler userList = new UserHandler();
+
+            users = userList.FetchAll();
+
+            return View("Index1", users);
+        }
+
 
         public ActionResult Afventer()
         {

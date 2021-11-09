@@ -20,5 +20,9 @@ namespace EasyMadModul.Models
             MemNumb = memNumb;
 
         }
+
+        public UserModel()
+        {
+        }
     }
 }
