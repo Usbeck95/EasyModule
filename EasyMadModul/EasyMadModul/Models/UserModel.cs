@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace EasyMadModul.Models
 {
@@ -9,15 +10,16 @@ namespace EasyMadModul.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Department { get; set; }
-        public int MemNumb { get; set; }
+        public int DepartmentId { get; set; }
+       
+        public SelectList Departmentlist { get; set; }
 
-        public UserModel(int id, string name, string department, int memNumb)
+        public UserModel(int id, string name, int departmentId)
         {
             Id = id;
             Name = name;
-            Department = department;
-            MemNumb = memNumb;
+            DepartmentId = departmentId;
+           
 
         }
 

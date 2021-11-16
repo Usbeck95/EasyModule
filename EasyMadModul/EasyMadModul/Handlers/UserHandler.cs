@@ -10,8 +10,43 @@ namespace EasyMadModul.Handlers
 {
     public class UserHandler
     {
+
        //connection to database
-            string connStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString; 
+            string connStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+
+        public List<UserModel> FetchDepartments()
+        {
+            List<UserModel> returnList = new List<UserModel>();
+
+            // access to database
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                string sqlQuery = "SELECT MIN(DepartmentId) AS DepartmentId from dbo.Users GROUP BY DepartmentId ";
+
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                connection.Open();
+                // betyder den bare skal læse noget i databasen så altså ikke ændre noget.
+                SqlDataReader reader = command.ExecuteReader();
+
+                // hvis reader finder nogle rows
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        /* så hver gang at der er en row, som den kan læse, så skal den lave et nyt user object og tilføje det til listen som skal returneres */
+                        UserModel user = new UserModel();
+                        
+                        user.DepartmentId = reader.GetInt32(0);
+                        
+
+                        returnList.Add(user);
+                    }
+                }
+            }
+
+            return returnList;
+        }
 
         public List<UserModel> FetchAll()
         {
@@ -37,9 +72,8 @@ namespace EasyMadModul.Handlers
                         UserModel user = new UserModel();
                         user.Id = reader.GetInt32(0);
                         user.Name = reader.GetString(1);
-                        user.Department = reader.GetString(2);
-                        user.MemNumb = reader.GetInt32(3);
-
+                        user.DepartmentId = reader.GetInt32(2);
+                        
                         returnList.Add(user);
                     }
                 }
@@ -66,8 +100,8 @@ namespace EasyMadModul.Handlers
 
                 /*fortæller at @Name er det samme som user.Name osv. Da de i databasen har fixes sizes, så skal det med. Derfor int ikke for den ekstra parameter*/
                 command.Parameters.Add("@Name", System.Data.SqlDbType.VarChar, 50).Value = user.Name;
-                command.Parameters.Add("@Department", System.Data.SqlDbType.VarChar,-1).Value = user.Department;
-                command.Parameters.Add("@MemNumb", System.Data.SqlDbType.Int).Value = user.MemNumb;
+                command.Parameters.Add("@DepartmentId", System.Data.SqlDbType.VarChar,-1).Value = user.DepartmentId;
+               
 
                 // open the database and run the command.
                 try

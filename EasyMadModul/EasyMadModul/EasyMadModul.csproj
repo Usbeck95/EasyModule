@@ -122,6 +122,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\UserHandler.cs" />
+    <Compile Include="Models\DepartmentModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\FoodCardModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +180,7 @@
     <Content Include="Views\Home\Udleveret.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Index1.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

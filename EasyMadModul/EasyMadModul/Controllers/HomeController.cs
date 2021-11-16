@@ -32,6 +32,14 @@ namespace EasyMadModul.Controllers
             return View("Index1", users);
         }
 
+        UserHandler departmentList = new UserHandler();
+
+        public ActionResult Index2()
+        {
+            UserModel MD = new UserModel();
+            MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding
+            return View(MD);
+        }
 
         public ActionResult Afventer()
         {
