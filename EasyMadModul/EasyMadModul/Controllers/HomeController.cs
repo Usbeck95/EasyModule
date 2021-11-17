@@ -11,34 +11,30 @@ namespace EasyMadModul.Controllers
         public ActionResult Index()
         {
             // GET: Users
-            List<UserModel> users = new List<UserModel>();
+         /*   List<UserModel> users = new List<UserModel>();
 
             UserHandler userList = new UserHandler();
 
-            users = userList.FetchAll();
+            users = userList.FetchAll();*/
 
-            return View("Index", users);
+            return View("Index");
         }
 
         public ActionResult Index1()
         {
             // GET: Users
-            List<UserModel> users = new List<UserModel>();
+          
 
-            UserHandler userList = new UserHandler();
-
-            users = userList.FetchAll();
-
-            return View("Index1", users);
+            return View("Index1");
         }
 
         UserHandler departmentList = new UserHandler();
 
         public ActionResult Index2()
         {
-            UserModel MD = new UserModel();
-            MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding
-            return View(MD);
+           /* UserModel MD = new UserModel();
+            MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding*/
+            return View();
         }
 
         public ActionResult Afventer()

@@ -14,7 +14,7 @@ namespace EasyMadModul.Handlers
        //connection to database
             string connStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
 
-        public List<UserModel> FetchDepartments()
+       /* public List<UserModel> FetchDepartments()
         {
             List<UserModel> returnList = new List<UserModel>();
 
@@ -34,7 +34,7 @@ namespace EasyMadModul.Handlers
                 {
                     while (reader.Read())
                     {
-                        /* så hver gang at der er en row, som den kan læse, så skal den lave et nyt user object og tilføje det til listen som skal returneres */
+                        *//* så hver gang at der er en row, som den kan læse, så skal den lave et nyt user object og tilføje det til listen som skal returneres *//*
                         UserModel user = new UserModel();
                         
                         user.DepartmentId = reader.GetInt32(0);
@@ -68,7 +68,7 @@ namespace EasyMadModul.Handlers
                 {
                     while (reader.Read())
                     {
-                        /* så hver gang at der er en row, som den kan læse, så skal den lave et nyt user object og tilføje det til listen som skal returneres */
+                        *//* så hver gang at der er en row, som den kan læse, så skal den lave et nyt user object og tilføje det til listen som skal returneres *//*
                         UserModel user = new UserModel();
                         user.Id = reader.GetInt32(0);
                         user.Name = reader.GetString(1);
@@ -87,7 +87,7 @@ namespace EasyMadModul.Handlers
             // start by assuming it fails and nothing is found
             bool success = false;
 
-            /*write a sql expression string queryString = "SELECT * FROM dbo.Users WHERE name = user.name AND department = user.department AND memNumb = user.memNumb "; men man kan ikke tilgå objektet ved at skrive user.name. i stedet laver man strengen om til at passe med c#*/
+            *//*write a sql expression string queryString = "SELECT * FROM dbo.Users WHERE name = user.name AND department = user.department AND memNumb = user.memNumb "; men man kan ikke tilgå objektet ved at skrive user.name. i stedet laver man strengen om til at passe med c#*//*
 
             string queryString = "SELECT * FROM dbo.Users WHERE name = @Name AND department = @Department AND memNumb = @MemNumb ";
 
@@ -98,7 +98,7 @@ namespace EasyMadModul.Handlers
                 // create the command and parameter objects
                 SqlCommand command = new SqlCommand(queryString, connection);
 
-                /*fortæller at @Name er det samme som user.Name osv. Da de i databasen har fixes sizes, så skal det med. Derfor int ikke for den ekstra parameter*/
+                *//*fortæller at @Name er det samme som user.Name osv. Da de i databasen har fixes sizes, så skal det med. Derfor int ikke for den ekstra parameter*//*
                 command.Parameters.Add("@Name", System.Data.SqlDbType.VarChar, 50).Value = user.Name;
                 command.Parameters.Add("@DepartmentId", System.Data.SqlDbType.VarChar,-1).Value = user.DepartmentId;
                
@@ -127,6 +127,6 @@ namespace EasyMadModul.Handlers
                 
             }
             return success;
-        }
+        }*/
     }
 }
