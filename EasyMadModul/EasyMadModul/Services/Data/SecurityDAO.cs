@@ -28,7 +28,7 @@ namespace EasyMadModul.Services.Data
                 // sqlcommand er en allerede defineret command, som man kan benytte sig af. Den bruger to parametere.
                 SqlCommand command = new SqlCommand(queryString, connection);
 
-                // fortæller sammenhængen mellem @Department og værdien for modellen departmen.department
+                // fortæller sammenhængen mellem @Department og værdien for modellen department.department
                 command.Parameters.Add("@Department", System.Data.SqlDbType.NVarChar).Value = department.Department;
                 command.Parameters.Add("@Password", System.Data.SqlDbType.NVarChar, 50).Value = department.Password;
 

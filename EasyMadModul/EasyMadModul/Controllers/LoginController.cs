@@ -27,6 +27,10 @@ namespace EasyMadModul.Controllers
 
             if (success)
             {
+           
+
+                Session["Department"] = departmentModel.Department;
+                Response.Write(Session["Department"]);
                 return View("LoginSuccess", departmentModel);
             }
             else

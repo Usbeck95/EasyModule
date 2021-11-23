@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using EasyMadModul.Handlers;
-
+using EasyMadModul.Controllers;
+using System.Web;
 
 namespace EasyMadModul.Controllers
 {
@@ -10,12 +11,16 @@ namespace EasyMadModul.Controllers
     {
         public ActionResult Index()
         {
+
+            
+
+            Response.Write(Session["Department"]);
             // GET: Users
-         /*   List<UserModel> users = new List<UserModel>();
+            /*   List<UserModel> users = new List<UserModel>();
 
-            UserHandler userList = new UserHandler();
+               UserHandler userList = new UserHandler();
 
-            users = userList.FetchAll();*/
+               users = userList.FetchAll();*/
 
             return View("Index");
         }
@@ -32,8 +37,9 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Index2()
         {
-           /* UserModel MD = new UserModel();
-            MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding*/
+            
+            /* UserModel MD = new UserModel();
+             MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding*/
             return View();
         }
 
