@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using EasyMadModul.Handlers;
 using EasyMadModul.Controllers;
 using System.Web;
+using System;
+using EasyMadModul.Controllers.Data;
 
 namespace EasyMadModul.Controllers
 {
@@ -15,7 +17,7 @@ namespace EasyMadModul.Controllers
             
 
             Response.Write(Session["Department"]);
-            // GET: Users
+            
             /*   List<UserModel> users = new List<UserModel>();
 
                UserHandler userList = new UserHandler();
@@ -63,6 +65,18 @@ namespace EasyMadModul.Controllers
            
 
             return View();
+        }
+
+        public ActionResult OrdreListe()
+        {
+
+            List<OrderModel> orders = new List<OrderModel>();
+            DateTime date1 = DateTime.Now;
+            OrderDAO orderDAO = new OrderDAO();
+
+            orders = orderDAO.FetchOrder();
+
+            return View("OrdreListe", orders);
         }
     }
 }

@@ -7,6 +7,10 @@ namespace EasyMadModul.Models
 {
     public class OrderModel
     {
+        public OrderModel()
+        {
+        }
+
         public OrderModel(int id, int memNumb, string dishName, byte[] dishImg, string orderCmnt, DateTime orderTime, int state)
         {
             Id = id;
@@ -24,7 +28,7 @@ namespace EasyMadModul.Models
 
         public string DishName { get; set; }
 
-        public Byte[] DishImg { get; set; }
+        public byte[] DishImg { get; set; }
 
         public  string OrderCmnt { get; set; }
 
