@@ -192,8 +192,8 @@
     <Content Include="Views\Home\Order0.cshtml" />
     <Content Include="Views\Home\Order1.cshtml" />
     <Content Include="Views\Home\Order2.cshtml" />
-    <Content Include="Views\Home\NyOrdre.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\NyOrdre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

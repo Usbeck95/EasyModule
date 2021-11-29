@@ -6,6 +6,7 @@ using EasyMadModul.Controllers;
 using System.Web;
 using System;
 using EasyMadModul.Controllers.Data;
+using System.Drawing;
 
 namespace EasyMadModul.Controllers
 {
@@ -116,7 +117,15 @@ namespace EasyMadModul.Controllers
         }
         public ActionResult NyOrdre()
         {
+            // Det eneste denne actionresult skal gøre, er at vise en form. Den skal altså ikke være den der proccesor den nye ordre fra createorder.
             return View("NyOrdre");
+        }
+
+        public ActionResult ProcessNewOrder(OrderModel orderModel)
+        {
+            OrderDAO orderDAO = new OrderDAO();
+            orderDAO.CreateOrder(orderModel);
+            return View("Details", orderModel);
         }
 
         public ActionResult Details(int id)

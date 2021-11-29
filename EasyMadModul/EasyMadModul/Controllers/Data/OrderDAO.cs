@@ -213,13 +213,31 @@ namespace EasyMadModul.Controllers.Data
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
-                string sqlQuery = "INSERT INTO dbo.Orders Values(@MemNumb, @DishName, @DishImg, @OrderCmnt) ";
+                string sqlQuery = "INSERT INTO dbo.Orders Values(@MemNumb, @DishName, @DishImg, @OrderCmnt, @OrderTime, @State) ";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 command.Parameters.Add("@MemNumb", System.Data.SqlDbType.Int, 1000).Value = orderModel.MemNumb;
+
                 command.Parameters.Add("@DishName", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.DishName;
-                command.Parameters.Add("@DishImg", System.Data.SqlDbType.VarBinary, 8000).Value = orderModel.DishImg;
+
+
+                SqlParameter imageParam = command.Parameters.Add("@DishImg", System.Data.SqlDbType.Image);
+                imageParam.Value = orderModel.DishImg;
+                if (orderModel.DishImg == null)
+                {
+                    imageParam.Value = DBNull.Value;
+                }
+
+
                 command.Parameters.Add("@OrderCmnt", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.OrderCmnt;
+
+                command.Parameters.Add("@OrderTime", System.Data.SqlDbType.DateTime2).Value = orderModel.OrderTime;
+                /*if (orderModel.OrderTime == null)
+                {
+                    imageParam.Value = DBNull.Value;
+                }*/
+
+                command.Parameters.Add("@State", System.Data.SqlDbType.Int, 1000).Value = orderModel.State;
                
               
 
