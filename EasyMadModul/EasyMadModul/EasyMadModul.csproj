@@ -188,8 +188,12 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\LoginSuccess.cshtml" />
     <Content Include="Views\Login\LoginFail.cshtml" />
-    <Content Include="Views\Home\NyOrdre.cshtml" />
     <Content Include="Views\Home\OrdreListe.cshtml" />
+    <Content Include="Views\Home\Order0.cshtml" />
+    <Content Include="Views\Home\Order1.cshtml" />
+    <Content Include="Views\Home\Order2.cshtml" />
+    <Content Include="Views\Home\NyOrdre.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

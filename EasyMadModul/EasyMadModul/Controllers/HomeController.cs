@@ -71,12 +71,60 @@ namespace EasyMadModul.Controllers
         {
 
             List<OrderModel> orders = new List<OrderModel>();
-            DateTime date1 = DateTime.Now;
+            
             OrderDAO orderDAO = new OrderDAO();
 
             orders = orderDAO.FetchOrder();
 
             return View("OrdreListe", orders);
+        }
+
+        public ActionResult Order0()
+        {
+            List<OrderModel> orders0 = new List<OrderModel>();
+
+            OrderDAO orderDAO = new OrderDAO();
+
+            orders0 = orderDAO.FetchOrder0();
+
+            return View("Order0", orders0);
+
+        }
+
+        public ActionResult Order1()
+        {
+            List<OrderModel> orders1 = new List<OrderModel>();
+
+            OrderDAO orderDAO = new OrderDAO();
+
+            orders1 = orderDAO.FetchOrder1();
+
+            return View("Order1", orders1);
+
+        }
+
+        public ActionResult Order2()
+        {
+            List<OrderModel> orders2 = new List<OrderModel>();
+
+            OrderDAO orderDAO = new OrderDAO();
+
+            orders2 = orderDAO.FetchOrder2();
+
+            return View("Order2", orders2);
+
+        }
+        public ActionResult NyOrdre()
+        {
+            return View("NyOrdre");
+        }
+
+        public ActionResult Details(int id)
+        {
+            //For at få order fra databasen, så bliver man nødt til at lave en instance af databasen. Derfor:
+            OrderDAO orderDAO = new OrderDAO();
+            OrderModel order = orderDAO.FetchOneOrder(id);
+            return View("Details", order);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,7 @@ namespace EasyMadModul.Models
         {
         }
 
-        public OrderModel(int id, int memNumb, string dishName, byte[] dishImg, string orderCmnt, DateTime orderTime, int state)
+        public OrderModel(int id, int memNumb, string dishName, Image dishImg, string orderCmnt, DateTime orderTime, int state)
         {
             Id = id;
             MemNumb = memNumb;
@@ -28,7 +29,7 @@ namespace EasyMadModul.Models
 
         public string DishName { get; set; }
 
-        public byte[] DishImg { get; set; }
+        public Image DishImg { get; set; }
 
         public  string OrderCmnt { get; set; }
 
