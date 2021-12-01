@@ -12,23 +12,23 @@ namespace EasyMadModul.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+       /* public ActionResult Index()
         {
 
             
 
             Response.Write(Session["Department"]);
             
-            /*   List<UserModel> users = new List<UserModel>();
+            *//*   List<UserModel> users = new List<UserModel>();
 
                UserHandler userList = new UserHandler();
 
-               users = userList.FetchAll();*/
+               users = userList.FetchAll();*//*
 
             return View("Index");
-        }
+        }*/
 
-        public ActionResult Index1()
+     /*   public ActionResult Index1()
         {
             // GET: Users
           
@@ -36,17 +36,17 @@ namespace EasyMadModul.Controllers
             return View("Index1");
         }
 
-        UserHandler departmentList = new UserHandler();
+        UserHandler departmentList = new UserHandler();*/
 
-        public ActionResult Index2()
+     /*   public ActionResult Index2()
         {
             
-            /* UserModel MD = new UserModel();
-             MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding*/
+            *//* UserModel MD = new UserModel();
+             MD.Departmentlist = new SelectList(departmentList.FetchDepartments(), "Id", "DepartmentId"); // model binding*//*
             return View();
-        }
+        }*/
 
-        public ActionResult Afventer()
+        /*public ActionResult Afventer()
         {
             var model = new List<FoodCardModel>();
 
@@ -59,18 +59,18 @@ namespace EasyMadModul.Controllers
 
 
             return View(model);
-        }
+        }*/
 
-        public ActionResult Udleveret()
+       /* public ActionResult Udleveret()
         {
            
 
             return View();
-        }
+        }*/
 
         public ActionResult OrdreListe()
         {
-
+            Response.Write(Session["Department"]);
             List<OrderModel> orders = new List<OrderModel>();
             
             OrderDAO orderDAO = new OrderDAO();
@@ -82,6 +82,7 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Order0()
         {
+            Response.Write(Session["Department"]);
             List<OrderModel> orders0 = new List<OrderModel>();
 
             OrderDAO orderDAO = new OrderDAO();
@@ -89,6 +90,13 @@ namespace EasyMadModul.Controllers
             orders0 = orderDAO.FetchOrder0();
 
             return View("Order0", orders0);
+
+        }
+        public ActionResult UpdateOrder0(OrderModel orderModel)
+        {
+            OrderDAO orderDAO = new OrderDAO();
+            OrderModel order = orderDAO.FetchOneOrder(id);
+            return RedirectToAction("Order0", "HomeController", order);
 
         }
 
@@ -101,6 +109,14 @@ namespace EasyMadModul.Controllers
             orders1 = orderDAO.FetchOrder1();
 
             return View("Order1", orders1);
+
+        }
+
+        public ActionResult UpdateOrder1(OrderModel orderModel)
+        {
+            OrderDAO orderDAO = new OrderDAO();
+            orderDAO.UpdateOrder(orderModel);
+            return RedirectToRoute(new { controller = "Home", action = "Order1" });
 
         }
 
@@ -135,5 +151,6 @@ namespace EasyMadModul.Controllers
             OrderModel order = orderDAO.FetchOneOrder(id);
             return View("Details", order);
         }
+       
     }
 }

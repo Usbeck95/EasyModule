@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -24,7 +25,7 @@ namespace EasyMadModul.Models
         }
 
         public int Id { get; set; }
-
+        [DisplayName ("Medlemsnummer")]
         public int MemNumb { get; set; }
 
         public string DishName { get; set; }

@@ -220,7 +220,7 @@ namespace EasyMadModul.Controllers.Data
 
                 command.Parameters.Add("@DishName", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.DishName;
 
-
+                // Så fordi jeg endnu ikke har en fungerende måde at gemme billeder på i min databse, så bliver programmet rimelig sur, når jeg har sagt jeg vil lave en ny ordre ud fra hele min ordremodel. Men jeg kan jo ikke rigtig give den et billede endnu, og af andre grunde kan det måske være klogt nok, at have en løsning til, hvis brugeren ikke udfylder feltet. Derfor måtte jeg tilføje noget mere kode til parameter tilføjelsen til billede. For at det blev ordentlig syntaks, så måtte jeg også dele noget at koden op og definere en ny sqlparameter. 
                 SqlParameter imageParam = command.Parameters.Add("@DishImg", System.Data.SqlDbType.Image);
                 imageParam.Value = orderModel.DishImg;
                 if (orderModel.DishImg == null)
@@ -232,11 +232,7 @@ namespace EasyMadModul.Controllers.Data
                 command.Parameters.Add("@OrderCmnt", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.OrderCmnt;
 
                 command.Parameters.Add("@OrderTime", System.Data.SqlDbType.DateTime2).Value = orderModel.OrderTime;
-                /*if (orderModel.OrderTime == null)
-                {
-                    imageParam.Value = DBNull.Value;
-                }*/
-
+                
                 command.Parameters.Add("@State", System.Data.SqlDbType.Int, 1000).Value = orderModel.State;
                
               
@@ -250,5 +246,44 @@ namespace EasyMadModul.Controllers.Data
         }
     }
 
+        public int UpdateOrder(OrderModel orderModel)
+        {
+
+            // if ordermodel.state = 0 then update to 1
+            // if ordermodel.state = 1 then update to 2
+            
+
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                string sqlQuery = "UPDATE dbo.Orders SET State = @State WHERE Id = @Id";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = orderModel.Id;
+
+                if (orderModel.State == 0)
+                {
+
+                    Console.WriteLine("Ordren havde en state 0");
+                    command.Parameters.Add("@State", System.Data.SqlDbType.Int, 1000).Value = 1;
+
+                }
+                else if (orderModel.State == 1)
+                {
+
+                    Console.WriteLine("Ordren havde en state 1");
+                    command.Parameters.Add("@State", System.Data.SqlDbType.Int, 1000).Value = 2;
+                }
+                else
+                {
+                    Console.WriteLine("Noget gik galt");
+                }
+                
+                connection.Open();
+
+                int newState = command.ExecuteNonQuery();
+
+
+                return newState;
+            }
+        }
     }
 }
