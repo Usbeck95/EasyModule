@@ -80,6 +80,15 @@ namespace EasyMadModul.Controllers
             return View("OrdreListe", orders);
         }
 
+        public ActionResult Delete(int id)
+        {
+            OrderDAO orderDAO = new OrderDAO();
+            orderDAO.Delete(id);
+            List<OrderModel> orders = orderDAO.FetchOrder();
+
+            return View("OrdreListe", orders);
+        }
+
         public ActionResult Order0()
         {
             Response.Write(Session["Department"]);
@@ -110,6 +119,7 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Order1()
         {
+            Response.Write(Session["Department"]);
             List<OrderModel> orders1 = new List<OrderModel>();
 
             OrderDAO orderDAO = new OrderDAO();
@@ -131,6 +141,7 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Order2()
         {
+            Response.Write(Session["Department"]);
             List<OrderModel> orders2 = new List<OrderModel>();
 
             OrderDAO orderDAO = new OrderDAO();

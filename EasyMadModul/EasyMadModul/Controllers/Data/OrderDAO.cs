@@ -94,6 +94,27 @@ namespace EasyMadModul.Controllers.Data
                 return order;
             }
         }
+
+        internal int Delete(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                string sqlQuery = "DELETE FROM dbo.Orders WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
+
+
+                connection.Open();
+
+                int deletedID = command.ExecuteNonQuery();
+
+
+                return deletedID;
+            }
+        }
+
         public List<OrderModel> FetchOrder0()
         {
             List<OrderModel> returnList = new List<OrderModel>();
