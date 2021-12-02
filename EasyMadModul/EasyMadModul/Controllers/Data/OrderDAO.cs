@@ -251,8 +251,8 @@ namespace EasyMadModul.Controllers.Data
 
             // if ordermodel.state = 0 then update to 1
             // if ordermodel.state = 1 then update to 2
-            
 
+            
             using (SqlConnection connection = new SqlConnection(connStr))
             {
                 string sqlQuery = "UPDATE dbo.Orders SET State = @State WHERE Id = @Id";

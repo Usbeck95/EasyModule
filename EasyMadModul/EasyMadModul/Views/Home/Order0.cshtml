@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<EasyMadModul.Models.OrderModel>
 
+
+
 @{
     ViewBag.Title = "Order0";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,7 +51,12 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             <td>
-                @Html.ActionLink("UpdateOrder0", "UpdateOrder0", new { id = item.Id }) |
+
+
+
+                @Html.ActionLink("UpdateOrder0", "UpdateOrder0", new { id = item.Id })
+
+
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
@@ -58,7 +65,8 @@
 
 </table>
 
-@* Skelet til opstilling af ordre i card model.
+
+       @* Skelet til opstilling af ordre i card model.
         @foreach (var item in Model)
     {
         <div class="row">

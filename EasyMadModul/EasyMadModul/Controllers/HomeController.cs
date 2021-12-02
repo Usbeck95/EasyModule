@@ -92,12 +92,20 @@ namespace EasyMadModul.Controllers
             return View("Order0", orders0);
 
         }
-        public ActionResult UpdateOrder0(OrderModel orderModel)
+        /* public ActionResult UpdateOrder0(int id)
+         {
+             OrderDAO orderDAO = new OrderDAO();
+             OrderModel order = orderDAO.UpdateOrder(id);
+             return RedirectToAction("Order0", "HomeController", order);
+
+         }*/
+        public ActionResult UpdateOrder0(int id)
         {
             OrderDAO orderDAO = new OrderDAO();
             OrderModel order = orderDAO.FetchOneOrder(id);
-            return RedirectToAction("Order0", "HomeController", order);
+            orderDAO.UpdateOrder(order);
 
+            return RedirectToAction("Order0", "HomeController");
         }
 
         public ActionResult Order1()
@@ -112,11 +120,12 @@ namespace EasyMadModul.Controllers
 
         }
 
-        public ActionResult UpdateOrder1(OrderModel orderModel)
+       public ActionResult UpdateOrder1(int id)
         {
             OrderDAO orderDAO = new OrderDAO();
-            orderDAO.UpdateOrder(orderModel);
-            return RedirectToRoute(new { controller = "Home", action = "Order1" });
+            OrderModel order = orderDAO.FetchOneOrder(id);
+            orderDAO.UpdateOrder(order);
+            return RedirectToAction("Order0", "HomeController");
 
         }
 
