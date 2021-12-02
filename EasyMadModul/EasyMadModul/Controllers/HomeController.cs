@@ -105,7 +105,7 @@ namespace EasyMadModul.Controllers
             OrderModel order = orderDAO.FetchOneOrder(id);
             orderDAO.UpdateOrder(order);
 
-            return RedirectToAction("Order0", "HomeController");
+            return RedirectToAction("Order0");
         }
 
         public ActionResult Order1()
@@ -125,7 +125,7 @@ namespace EasyMadModul.Controllers
             OrderDAO orderDAO = new OrderDAO();
             OrderModel order = orderDAO.FetchOneOrder(id);
             orderDAO.UpdateOrder(order);
-            return RedirectToAction("Order0", "HomeController");
+            return RedirectToAction("Order1");
 
         }
 
