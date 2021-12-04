@@ -13,12 +13,14 @@ namespace EasyMadModul.Models
         {
         }
 
-        public OrderModel(int id, int memNumb, string dishName, Image dishImg, string orderCmnt, DateTime orderTime, int state)
+        public OrderModel(int id, int memNumb, string dishName, string imgName, string imgExt, string imgPath, string orderCmnt, DateTime orderTime, int state)
         {
             Id = id;
             MemNumb = memNumb;
             DishName = dishName;
-            DishImg = dishImg;
+            ImgName = imgName;
+            ImgExt = imgExt;
+            ImgPath = imgPath;
             OrderCmnt = orderCmnt;
             OrderTime = orderTime;
             State = state;
@@ -30,7 +32,9 @@ namespace EasyMadModul.Models
 
         public string DishName { get; set; }
 
-        public Image DishImg { get; set; }
+        public string ImgName { get; set; }
+        public string ImgExt { get; set; }
+        public string ImgPath { get; set; }
 
         public  string OrderCmnt { get; set; }
 

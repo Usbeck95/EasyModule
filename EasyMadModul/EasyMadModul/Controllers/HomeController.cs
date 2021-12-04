@@ -7,6 +7,7 @@ using System.Web;
 using System;
 using EasyMadModul.Controllers.Data;
 using System.Drawing;
+using System.IO;
 
 namespace EasyMadModul.Controllers
 {
@@ -157,10 +158,22 @@ namespace EasyMadModul.Controllers
             return View("NyOrdre");
         }
 
-        public ActionResult ProcessNewOrder(OrderModel orderModel)
+        public ActionResult ProcessNewOrder(OrderModel orderModel, HttpPostedFileBase file)
         {
-            OrderDAO orderDAO = new OrderDAO();
-            orderDAO.CreateOrder(orderModel);
+          
+
+            string imgName = Path.GetFileName(file.FileName);
+            string imgExt = Path.GetExtension(imgName);
+            string imgPath = "";
+            if (imgExt == ".jpg" || imgExt == ".png")
+            {
+                imgPath = Path.Combine(Server.MapPath("~/Images"), imgName);
+                file.SaveAs(imgPath);
+            }
+
+                OrderDAO orderDAO = new OrderDAO();
+            orderDAO.CreateOrder(orderModel, imgName, imgExt, imgPath);
+
             return View("Details", orderModel);
         }
 

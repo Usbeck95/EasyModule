@@ -8,7 +8,7 @@
 <h2>NyOrdre</h2>
 
 
-@using (Html.BeginForm("ProcessNewOrder", "Home")) 
+@using (Html.BeginForm("ProcessNewOrder", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -32,9 +32,9 @@
         </div>
     </div>
 
-    @Html.LabelFor(model => model.DishImg, htmlAttributes: new { @class = "control-label col-md-2" })
-    <input type="file" name="DishImg" id="DishImg" multiple="multiple" class="input-files" />
-
+    <label>Billede</label>
+    <input type="file" name="file" class="input-files" />
+   @* @Html.for("file", "", new { type = "file" })*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.OrderCmnt, htmlAttributes: new { @class = "control-label col-md-2" })

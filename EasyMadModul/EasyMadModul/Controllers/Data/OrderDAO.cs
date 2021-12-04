@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.Web;
 
 namespace EasyMadModul.Controllers.Data
 {
@@ -36,9 +38,9 @@ namespace EasyMadModul.Controllers.Data
                         order.MemNumb = reader.GetInt32(1);
                         order.DishName = reader.GetString(2);
                         // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
-                        order.OrderCmnt = reader.GetString(4);
-                        order.OrderTime = reader.GetDateTime(5);
-                        order.State = reader.GetInt32(6);
+                        order.OrderCmnt = reader.GetString(6);
+                        order.OrderTime = reader.GetDateTime(7);
+                        order.State = reader.GetInt32(8);
 
                         returnList.Add(order);
 
@@ -229,12 +231,13 @@ namespace EasyMadModul.Controllers.Data
             return returnList;
         }
 
-        public int CreateOrder(OrderModel orderModel)
+        public int CreateOrder(OrderModel orderModel, string imgName, string imgExt, string imgPath)
         {
+           
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
-                string sqlQuery = "INSERT INTO dbo.Orders Values(@MemNumb, @DishName, @DishImg, @OrderCmnt, @OrderTime, @State) ";
+                string sqlQuery = "INSERT INTO dbo.Orders Values(@MemNumb, @DishName, @ImgName, @ImgExt, @ImgPath, @OrderCmnt, @OrderTime, @State) ";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 command.Parameters.Add("@MemNumb", System.Data.SqlDbType.Int, 1000).Value = orderModel.MemNumb;
@@ -242,13 +245,29 @@ namespace EasyMadModul.Controllers.Data
                 command.Parameters.Add("@DishName", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.DishName;
 
                 // Så fordi jeg endnu ikke har en fungerende måde at gemme billeder på i min databse, så bliver programmet rimelig sur, når jeg har sagt jeg vil lave en ny ordre ud fra hele min ordremodel. Men jeg kan jo ikke rigtig give den et billede endnu, og af andre grunde kan det måske være klogt nok, at have en løsning til, hvis brugeren ikke udfylder feltet. Derfor måtte jeg tilføje noget mere kode til parameter tilføjelsen til billede. For at det blev ordentlig syntaks, så måtte jeg også dele noget at koden op og definere en ny sqlparameter. 
-                SqlParameter imageParam = command.Parameters.Add("@DishImg", System.Data.SqlDbType.Image);
-                imageParam.Value = orderModel.DishImg;
-                if (orderModel.DishImg == null)
-                {
-                    imageParam.Value = DBNull.Value;
-                }
 
+
+
+                /*
+                                SqlParameter imageParam = command.Parameters.Add("@DishImg", System.Data.SqlDbType.Image);
+                                imageParam.Value = orderModel.DishImg;
+
+                                if (orderModel.DishImg == null)
+                                {
+                                    imageParam.Value = DBNull.Value;
+                                }*/
+
+               /* string imgName = Path.GetFileName(file.FileName);
+                string imgExt = Path.GetExtension(imgName);
+                if(imgExt == ".jpg" || imgExt == ".png")
+                {
+                    string imgPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), imgName);
+                    file.SaveAs(imgName);*/
+
+                    command.Parameters.Add("@ImgName", System.Data.SqlDbType.VarChar, 1000).Value = imgName;
+                    command.Parameters.Add("@ImgExt", System.Data.SqlDbType.VarChar, 1000).Value = imgExt;
+                    command.Parameters.Add("@ImgPath", System.Data.SqlDbType.VarChar, 1000).Value = imgPath;
+              /*  }*/
 
                 command.Parameters.Add("@OrderCmnt", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.OrderCmnt;
 

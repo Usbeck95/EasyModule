@@ -63,18 +63,20 @@
 </table>
 
 
-       @* Skelet til opstilling af ordre i card model.
+        Skelet til opstilling af ordre i card model.
         @foreach (var item in Model)
     {
         <div class="row">
             <div class="col-4">
                 <div class="card" style="width: 18rem;">
-                    <h5 class="card-title">@item.Name</h5>
-                    <img src="@item.FoodImg" class="card-img-top" alt="...">
-                    <h5>@item.FoodDish</h5>
+                    <h5 class="card-title"> @Html.DisplayNameFor(model => model.MemNumb)</h5>
+                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.MemNumb)</h5>
+                    <img src="" class="card-img-top" alt="...">
+                    <h5>@Html.DisplayNameFor(model => model.DishName)</h5>
+                    <h5>@Html.DisplayFor(modelItem => item.DishName)</h5>
                     <div class="card-body">
 
-                        <button type="button" class="btn btn-primary">Ja dak</button>
+                        <button type="button" class="btn btn-primary">  @Html.ActionLink("UpdateOrder0", "UpdateOrder0", new { id = item.Id }) </button>
 
                     </div>
                 </div>
@@ -82,4 +84,3 @@
         </div>
 
     }
-*@

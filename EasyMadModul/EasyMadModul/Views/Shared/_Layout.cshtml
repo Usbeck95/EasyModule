@@ -93,22 +93,6 @@
 </style>
 
 <script>
-    const afventer = document.getElementById("afventer");
-    const udleveret = document.getElementById("udleveret");
-
-    const regU = /Home\/Udleveret/g;
-    const regA = /Home\/Afventer/g;
-
-    if (window.location.href.match(regU)) {
-        console.log("vi er på udleveret");
-        udleveret.classList.add("active");
-        afventer.classList.remove("active");
-    } else if (window.location.href.match(regA)) {
-        console.log("vi er på afventer");
-        afventer.classList.add("active");
-        udleveret.classList.remove("active");
-    } else {
-        console.log("hello cats");
-    }
+   
 
 </script>
