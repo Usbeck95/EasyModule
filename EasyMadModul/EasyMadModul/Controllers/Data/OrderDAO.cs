@@ -37,6 +37,9 @@ namespace EasyMadModul.Controllers.Data
                         order.Id = reader.GetInt32(0);
                         order.MemNumb = reader.GetInt32(1);
                         order.DishName = reader.GetString(2);
+                        order.ImgName = reader.GetString(3);
+                        order.ImgExt = reader.GetString(4);
+                        order.ImgPath = reader.GetString(5);
                         // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
                         order.OrderCmnt = reader.GetString(6);
                         order.OrderTime = reader.GetDateTime(7);

@@ -18,7 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DishName)
         </th>
-        
+        <th>
+            Billede
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.OrderCmnt)
         </th>
@@ -39,7 +41,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.DishName)
         </td>
-        
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.ImgPath)" />
+            
+            @Html.DisplayFor(modelItem => item.ImgPath)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.OrderCmnt)
         </td>
