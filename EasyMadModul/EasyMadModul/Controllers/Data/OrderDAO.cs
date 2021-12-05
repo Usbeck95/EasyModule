@@ -124,13 +124,38 @@ namespace EasyMadModul.Controllers.Data
             }
         }
 
-        public List<OrderModel> FetchOrder0()
+        public List<OrderModel> FetchOrder0(string departName)
         {
             List<OrderModel> returnList = new List<OrderModel>();
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
-                string sqlQuery = "SELECT * from dbo.Orders WHERE state = 0";
+                string sqlQuery = "";
+                if (departName != null)
+                {
+                    if (departName == "KittyClubOJ")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 0 AND department = 1";
+
+                    }
+                    else if (departName == "Toftegaardens RingridderKlub")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 0 AND department = 2";
+                    }
+                    else if (departName == "True Crime Kaffeklubben")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 0 AND department = 3";
+                    }
+                    else if (departName == "RhinestoneCowgirlsClub")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 0 AND department = 4";
+                    }
+
+                }
+                else
+                {
+                    sqlQuery = "SELECT * from dbo.Orders WHERE state = 0";
+                }
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 connection.Open();
@@ -232,13 +257,40 @@ namespace EasyMadModul.Controllers.Data
             return returnList;
         }
 
-        public List<OrderModel> FetchOrder2()
+        public List<OrderModel> FetchOrder2(string departName)
         {
             List<OrderModel> returnList = new List<OrderModel>();
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
-                string sqlQuery = "SELECT * from dbo.Orders WHERE state = 2";
+                string sqlQuery = "";
+                if (departName != null)
+                {
+                    if (departName == "KittyClubOJ")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 2 AND department = 1";
+
+                    }
+                    else if (departName == "Toftegaardens RingridderKlub")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 2 AND department = 2";
+                    }
+                    else if (departName == "True Crime Kaffeklubben")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 2 AND department = 3";
+                    }
+                    else if (departName == "RhinestoneCowgirlsClub")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 2 AND department = 4";
+                    }
+
+                }
+                else
+                {
+                    sqlQuery = "SELECT * from dbo.Orders WHERE state = 2";
+                }
+
+
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 connection.Open();

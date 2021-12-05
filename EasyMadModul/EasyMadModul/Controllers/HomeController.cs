@@ -92,12 +92,17 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Order0()
         {
-            Response.Write(Session["Department"]);
+            string departName = null;
+            if (Session["Department"] != null)
+            {
+
+                departName = Session["Department"].ToString();
+            }
             List<OrderModel> orders0 = new List<OrderModel>();
 
             OrderDAO orderDAO = new OrderDAO();
 
-            orders0 = orderDAO.FetchOrder0();
+            orders0 = orderDAO.FetchOrder0(departName);
 
             return View("Order0", orders0);
 
@@ -147,12 +152,17 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Order2()
         {
-            Response.Write(Session["Department"]);
+            string departName = null;
+            if (Session["Department"] != null)
+            {
+
+                departName = Session["Department"].ToString();
+            }
             List<OrderModel> orders2 = new List<OrderModel>();
 
             OrderDAO orderDAO = new OrderDAO();
 
-            orders2 = orderDAO.FetchOrder2();
+            orders2 = orderDAO.FetchOrder2(departName);
 
             return View("Order2", orders2);
 
