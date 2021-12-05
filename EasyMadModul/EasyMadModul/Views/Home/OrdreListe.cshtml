@@ -6,61 +6,208 @@
 }
 
 <h2>OrdreListe</h2>
+<button type="button" class="btn btn-primary">
+    
+        @Html.ActionLink("Lav ny ordre", "NyOrdre", null, new { style = "color:white;" })
+    
+</button>
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemNumb)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DishName)
+                </th>
+                <th>
+                    Billede
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderCmnt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MemNumb)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DishName)
-        </th>
-        <th>
-            Billede
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderCmnt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemNumb)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DishName)
+                    </td>
+                    <td>
+                        <img src="~/Images/@Html.DisplayFor(modelItem => item.ImgName)" />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemNumb)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DishName)
-        </td>
-        <td>
-            <img src="~/Images/@Html.DisplayFor(modelItem => item.ImgName)" />
-            
-          
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderCmnt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderCmnt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>*@
+
+    <div class="container-fluid" id="indexContainer">
+
+        <form class="row">
+            <input class="form-control me-2" type="search" placeholder="Søg efter medlem" aria-label="Search" id="søgInput">
+            <button class="btn " type="submit" id="søgBtn">Søg</button>
+        </form>
+
+
+        <table class="table" style=" margin-top: 2%;">
+            <thead>
+                <tr style="background-color: #fff;">
+                    <th scope="col">@Html.DisplayNameFor(model => model.DishName)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.MemNumb)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.OrderTime)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.DishName)</td>
+                        <td> @Html.DisplayFor(modelItem => item.MemNumb)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderTime)</td>
+                        <td>
+                            @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) 
+                            @Html.ActionLink("Slet", "Delete", new { id = item.Id })
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <style>
+
+        #indexContainer {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        #søgBtn {
+            color: #8da47e;
+            border-color: #8da47e;
+        }
+
+        @@media (min-width: 769px) {
+            #indexContainer {
+                margin-top: 5%;
+            }
+
+            #søgInput {
+                width: 91%;
+            }
+
+            #søgBtn {
+                width: 8%;
+            }
+        }
+
+        @@media (max-width: 769px) {
+            #indexContainer {
+                margin-top: 10%;
+            }
+
+            #søgInput {
+                width: 90%;
+            }
+
+            #søgBtn {
+                width: auto;
+            }
+        }
+
+        @@media (max-width: 769px) {
+            #indexContainer {
+                margin-top: 10%;
+            }
+
+            #søgInput {
+                width: 90%;
+            }
+
+            #søgBtn {
+                width: auto;
+            }
+        }
+
+        @@media (max-width: 760px) {
+            #søgInput {
+                width: 89%;
+            }
+        }
+
+        @@media (max-width: 600px) {
+            #søgInput {
+                width: 87%;
+            }
+        }
+
+        @@media (max-width: 500px) {
+            #søgInput {
+                width: 84%;
+            }
+        }
+
+        @@media (max-width: 426px) {
+            #søgInput {
+                width: 81%;
+            }
+        }
+
+        @@media (max-width: 375px) {
+            #søgInput {
+                width: 79%;
+            }
+        }
+
+        tbody {
+            border-right: 2px solid black;
+            border-left: 2px solid black;
+        }
+
+        tr:nth-last-child(1) {
+            border-bottom: 2px solid black;
+        }
+
+        tr:nth-child(2n+1) {
+            background-color: #e7cba9;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        
+    </style>
+
+

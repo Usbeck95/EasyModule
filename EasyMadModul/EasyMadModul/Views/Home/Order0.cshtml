@@ -7,80 +7,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Order0</h2>
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MemNumb)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DishName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderCmnt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemNumb)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DishName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderCmnt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-
-
-
-                @Html.ActionLink("UpdateOrder0", "UpdateOrder0", new { id = item.Id })
-
-
-          
-            </td>
-        </tr>
-    }
-
-</table>
-
-
-        Skelet til opstilling af ordre i card model.
+<h2>Afventer</h2>
+<div class="container-fluid" id="Order0Container">
+    
+    <div class="row" style="justify-content: center;">
         @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <h5 class="card-title"> @Html.DisplayNameFor(model => model.MemNumb)</h5>
-                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.MemNumb)</h5>
-                    <img src="" class="card-img-top" alt="...">
-                    <h5>@Html.DisplayNameFor(model => model.DishName)</h5>
-                    <h5>@Html.DisplayFor(modelItem => item.DishName)</h5>
-                    <div class="card-body">
+        {
+            <div class="col" style="max-width: max-content; padding-bottom: 1.5em;">
+                <div class="card" style="width: 18rem; height: 28rem; background-color: #FEF5ED; ">
+                    <div class="card-body row " style=" max-height: 4em;">
+                        <div class="col" style="height:max-content;">
+                            <h5 class="card-title"> @Html.DisplayNameFor(model => model.MemNumb):</h5>
+                            </div>
+                            <div class="col" style="height:max-content;">
 
-                        <button type="button" class="btn btn-primary">  @Html.ActionLink("UpdateOrder0", "UpdateOrder0", new { id = item.Id }) </button>
+                                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.MemNumb)</h5>
+                            </div>
+                        </div>
+                        <img src="~/Images/@Html.DisplayFor(modelItem => item.ImgName)" class="card-img-top" alt="..." style="height: 185px;;">
+                        
+                        <div class="card-body">
+                            <div class="row" style="justify-content: center;">
+                                <div class="col">
+                                    <h5>@Html.DisplayNameFor(model => model.DishName):</h5>
+                                </div>
+                                <div class="col">
+                                    <h5 class="text-break">@Html.DisplayFor(modelItem => item.DishName)</h5>
+                                </div>
+                            </div>
+                            <div class="row" style="justify-content: center;">
+                                <div class="col">
+                                    <h5> @Html.DisplayNameFor(model => model.OrderCmnt):</h5>
+                                </div>
+                                <div class="col">
+                                    <h5 class="text-break"> @Html.DisplayFor(modelItem => item.OrderCmnt)</h5>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <button type="button" class="btn btn-primary" style="width: inherit; color:white;"><i class="bi bi-check-circle fs-3 "></i>  @Html.ActionLink("Færdig", "UpdateOrder0", new { id = item.Id }) </button>
 
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> 
+         }
+    </div>
 
+
+   
+</div>
+
+<style>
+    a {
+        color: white;
+        text-decoration:none;
     }
+</style>

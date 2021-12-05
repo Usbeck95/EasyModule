@@ -71,7 +71,7 @@ namespace EasyMadModul.Controllers
 
         public ActionResult OrdreListe()
         {
-            Response.Write(Session["Department"]);
+            
             List<OrderModel> orders = new List<OrderModel>();
             
             OrderDAO orderDAO = new OrderDAO();

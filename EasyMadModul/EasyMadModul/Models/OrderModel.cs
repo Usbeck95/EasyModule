@@ -31,14 +31,15 @@ namespace EasyMadModul.Models
         [DisplayName ("Medlemsnummer")]
         public int MemNumb { get; set; }
         public int Department { get; set; }
+        [DisplayName("Ret")]
         public string DishName { get; set; }
 
         public string ImgName { get; set; }
         public string ImgExt { get; set; }
         public string ImgPath { get; set; }
-
+        [DisplayName("Kommentar")]
         public  string OrderCmnt { get; set; }
-
+        [DisplayName("Tid")]
         public DateTime OrderTime { get; set; }
 
         public int State { get; set; }
