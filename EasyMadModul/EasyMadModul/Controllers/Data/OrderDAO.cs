@@ -6,10 +6,12 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Web;
+using System.Web.SessionState;
+
 
 namespace EasyMadModul.Controllers.Data
 {
-    internal class OrderDAO
+    internal class OrderDAO  //DataAccessObject
     {
         //connection to database
         string connStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
@@ -36,14 +38,14 @@ namespace EasyMadModul.Controllers.Data
                         OrderModel order = new OrderModel();
                         order.Id = reader.GetInt32(0);
                         order.MemNumb = reader.GetInt32(1);
-                        order.DishName = reader.GetString(2);
-                        order.ImgName = reader.GetString(3);
-                        order.ImgExt = reader.GetString(4);
-                        order.ImgPath = reader.GetString(5);
-                        // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
-                        order.OrderCmnt = reader.GetString(6);
-                        order.OrderTime = reader.GetDateTime(7);
-                        order.State = reader.GetInt32(8);
+                        order.Department = reader.GetInt32(2);
+                        order.DishName = reader.GetString(3);
+                        order.ImgName = reader.GetString(4);
+                        order.ImgExt = reader.GetString(5);
+                        order.ImgPath = reader.GetString(6);
+                        order.OrderCmnt = reader.GetString(7);
+                        order.OrderTime = reader.GetDateTime(8);
+                        order.State = reader.GetInt32(9);
 
                         returnList.Add(order);
 
@@ -83,12 +85,14 @@ namespace EasyMadModul.Controllers.Data
 
                         order.Id = reader.GetInt32(0);
                         order.MemNumb = reader.GetInt32(1);
-                        order.DishName = reader.GetString(2);
-                        // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
-                        order.OrderCmnt = reader.GetString(4);
-                        order.OrderTime = reader.GetDateTime(5);
-                        order.State = reader.GetInt32(6);
-
+                        order.Department = reader.GetInt32(2);
+                        order.DishName = reader.GetString(3);
+                        order.ImgName = reader.GetString(4);
+                        order.ImgExt = reader.GetString(5);
+                        order.ImgPath = reader.GetString(6);
+                        order.OrderCmnt = reader.GetString(7);
+                        order.OrderTime = reader.GetDateTime(8);
+                        order.State = reader.GetInt32(9);
 
 
                     }
@@ -142,11 +146,14 @@ namespace EasyMadModul.Controllers.Data
                         OrderModel order = new OrderModel();
                         order.Id = reader.GetInt32(0);
                         order.MemNumb = reader.GetInt32(1);
-                        order.DishName = reader.GetString(2);
-                        // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
-                        order.OrderCmnt = reader.GetString(4);
-                        order.OrderTime = reader.GetDateTime(5);
-                        order.State = reader.GetInt32(6);
+                        order.Department = reader.GetInt32(2);
+                        order.DishName = reader.GetString(3);
+                        order.ImgName = reader.GetString(4);
+                        order.ImgExt = reader.GetString(5);
+                        order.ImgPath = reader.GetString(6);
+                        order.OrderCmnt = reader.GetString(7);
+                        order.OrderTime = reader.GetDateTime(8);
+                        order.State = reader.GetInt32(9);
 
                         returnList.Add(order);
 
@@ -158,13 +165,39 @@ namespace EasyMadModul.Controllers.Data
             return returnList;
         }
 
-        public List<OrderModel> FetchOrder1()
+        public List<OrderModel> FetchOrder1(string departName)
         {
             List<OrderModel> returnList = new List<OrderModel>();
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
-                string sqlQuery = "SELECT * from dbo.Orders WHERE state = 1";
+                string sqlQuery = "";
+                if (departName != null)
+                {
+                    if (departName == "KittyClubOJ")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 1 AND department = 1";
+                        
+                    }
+                    else if (departName == "Toftegaardens RingridderKlub")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 1 AND department = 2";
+                    }
+                    else if (departName == "True Crime Kaffeklubben")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 1 AND department = 3";
+                    }
+                    else if (departName == "RhinestoneCowgirlsClub")
+                    {
+                        sqlQuery = "SELECT * from dbo.Orders WHERE state = 1 AND department = 4";
+                    }
+
+                }
+                else
+                {
+                    sqlQuery = "SELECT * from dbo.Orders WHERE state = 1";
+                }
+                
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 connection.Open();
@@ -180,11 +213,14 @@ namespace EasyMadModul.Controllers.Data
                         OrderModel order = new OrderModel();
                         order.Id = reader.GetInt32(0);
                         order.MemNumb = reader.GetInt32(1);
-                        order.DishName = reader.GetString(2);
-                        // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
-                        order.OrderCmnt = reader.GetString(4);
-                        order.OrderTime = reader.GetDateTime(5);
-                        order.State = reader.GetInt32(6);
+                        order.Department = reader.GetInt32(2);
+                        order.DishName = reader.GetString(3);
+                        order.ImgName = reader.GetString(4);
+                        order.ImgExt = reader.GetString(5);
+                        order.ImgPath = reader.GetString(6);
+                        order.OrderCmnt = reader.GetString(7);
+                        order.OrderTime = reader.GetDateTime(8);
+                        order.State = reader.GetInt32(9);
 
                         returnList.Add(order);
 
@@ -218,11 +254,14 @@ namespace EasyMadModul.Controllers.Data
                         OrderModel order = new OrderModel();
                         order.Id = reader.GetInt32(0);
                         order.MemNumb = reader.GetInt32(1);
-                        order.DishName = reader.GetString(2);
-                        // her ville jeg gerne læse dishimg, men den er af type byte[] og skal bruge en del parametre jeg ikke helt forstår, hvor skal komme fra.
-                        order.OrderCmnt = reader.GetString(4);
-                        order.OrderTime = reader.GetDateTime(5);
-                        order.State = reader.GetInt32(6);
+                        order.Department = reader.GetInt32(2);
+                        order.DishName = reader.GetString(3);
+                        order.ImgName = reader.GetString(4);
+                        order.ImgExt = reader.GetString(5);
+                        order.ImgPath = reader.GetString(6);
+                        order.OrderCmnt = reader.GetString(7);
+                        order.OrderTime = reader.GetDateTime(8);
+                        order.State = reader.GetInt32(9);
 
                         returnList.Add(order);
 
@@ -240,11 +279,11 @@ namespace EasyMadModul.Controllers.Data
 
             using (SqlConnection connection = new SqlConnection(connStr))
             {
-                string sqlQuery = "INSERT INTO dbo.Orders Values(@MemNumb, @DishName, @ImgName, @ImgExt, @ImgPath, @OrderCmnt, @OrderTime, @State) ";
+                string sqlQuery = "INSERT INTO dbo.Orders Values(@MemNumb, @Department, @DishName, @ImgName, @ImgExt, @ImgPath, @OrderCmnt, @OrderTime, @State) ";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 command.Parameters.Add("@MemNumb", System.Data.SqlDbType.Int, 1000).Value = orderModel.MemNumb;
-
+                command.Parameters.Add("@Department", System.Data.SqlDbType.Int, 1000).Value = orderModel.Department;
                 command.Parameters.Add("@DishName", System.Data.SqlDbType.NVarChar, 1000).Value = orderModel.DishName;
 
                 // Så fordi jeg endnu ikke har en fungerende måde at gemme billeder på i min databse, så bliver programmet rimelig sur, når jeg har sagt jeg vil lave en ny ordre ud fra hele min ordremodel. Men jeg kan jo ikke rigtig give den et billede endnu, og af andre grunde kan det måske være klogt nok, at have en løsning til, hvis brugeren ikke udfylder feltet. Derfor måtte jeg tilføje noget mere kode til parameter tilføjelsen til billede. For at det blev ordentlig syntaks, så måtte jeg også dele noget at koden op og definere en ny sqlparameter. 

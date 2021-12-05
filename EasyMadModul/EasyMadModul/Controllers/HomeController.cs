@@ -120,12 +120,17 @@ namespace EasyMadModul.Controllers
 
         public ActionResult Order1()
         {
-            Response.Write(Session["Department"]);
+            string departName = null;
+            if (Session["Department"] != null) 
+            { 
+            
+            departName = Session["Department"].ToString();
+            }
             List<OrderModel> orders1 = new List<OrderModel>();
 
             OrderDAO orderDAO = new OrderDAO();
 
-            orders1 = orderDAO.FetchOrder1();
+            orders1 = orderDAO.FetchOrder1(departName);
 
             return View("Order1", orders1);
 
